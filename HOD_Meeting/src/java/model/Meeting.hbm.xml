@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 14, 2018 3:30:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Meeting" table="meeting" catalog="hod_meeting" optimistic-lock="version">
+        <id name="meetingId" type="java.lang.Integer">
+            <column name="meeting_id" />
+            <generator class="identity" />
+        </id>
+        <property name="meetingTitle" type="string">
+            <column name="meeting_title" length="50" />
+        </property>
+        <property name="generatedDate" type="string">
+            <column name="generated_date" length="50" />
+        </property>
+        <property name="meetingDate" type="string">
+            <column name="meeting_date" length="50" />
+        </property>
+        <property name="time" type="string">
+            <column name="time" length="50" />
+        </property>
+        <property name="venue" type="string">
+            <column name="venue" length="50" />
+        </property>
+        <property name="message" type="string">
+            <column name="message" length="50" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="50" />
+        </property>
+        <set name="meetingStatuses" table="meeting_status" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="meeting_id" />
+            </key>
+            <one-to-many class="model.MeetingStatus" />
+        </set>
+        <set name="meetingReplies" table="meeting_reply" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="meeting_id" />
+            </key>
+            <one-to-many class="model.MeetingReply" />
+        </set>
+    </class>
+</hibernate-mapping>

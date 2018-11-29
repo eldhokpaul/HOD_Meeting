@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 14, 2018 3:30:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.MeetingStatus" table="meeting_status" catalog="hod_meeting" optimistic-lock="version">
+        <id name="meetStatusId" type="java.lang.Integer">
+            <column name="meet_status_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="hod" class="model.Hod" fetch="select">
+            <column name="hod_id" />
+        </many-to-one>
+        <many-to-one name="meeting" class="model.Meeting" fetch="select">
+            <column name="meeting_id" />
+        </many-to-one>
+        <property name="status" type="string">
+            <column name="status" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
